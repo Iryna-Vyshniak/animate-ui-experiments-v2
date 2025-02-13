@@ -1,0 +1,121 @@
+{
+  "planets": [
+    {
+      "name": "Mercury",
+      "description": "Mercury is the smallest and fastest planet in our solar system—a true cosmic speedster that races around the Sun in just 88 Earth days! This tiny world bears the scars of billions of years of meteorite impacts, with its surface pockmarked by deep craters and rugged terrain. Temperatures swing wildly from searing heat of up to 430°C during the day to freezing lows of -180°C at night. Its enormous, iron-rich core hints at secrets from the early solar system. Mercury challenges our imaginations and dares young explorers to uncover its mysterious past and extreme environment.",
+      "physicalProperties": {
+        "diameterKm": 4879,
+        "avgTemperatureC": 167,
+        "surfaceGravityMs2": 3.7,
+        "orbitalPeriodDays": 88
+      },
+      "imageUrl": "/space/mercury.png",
+      "distanceFromSunMillionKm": 57.9,
+      "rotationSpeed": 0.016,
+      "texture": "/space/textures/mercury.webp"
+    },
+    {
+      "name": "Venus",
+      "description": "Venus, known as Earth's 'sister planet', is a realm of extreme conditions and dazzling mysteries. Despite being similar in size and mass to Earth, its thick, toxic atmosphere creates a runaway greenhouse effect, raising surface temperatures to levels that can melt lead! The pressure on its surface is crushing—imagine being 900 meters underwater on Earth. Beneath the perpetual shroud of clouds, Venus boasts a landscape marked by volcanoes and vast plains. Its unique retrograde rotation, where the day lasts longer than the year, adds to its enigmatic allure and makes it a planet that fuels the dreams of future space adventurers.",
+      "physicalProperties": {
+        "diameterKm": 12104,
+        "avgTemperatureC": 464,
+        "surfaceGravityMs2": 8.87,
+        "orbitalPeriodDays": 225
+      },
+      "imageUrl": "/space/venus.png",
+      "distanceFromSunMillionKm": 108.2,
+      "rotationSpeed": 0.004,
+      "texture": "/space/textures/venus.webp"
+    },
+    {
+      "name": "Earth",
+      "description": "Earth is our vibrant, life-sustaining oasis in the vast expanse of space—a planet bursting with color, diversity, and wonder. Over 70% of its surface is draped in water, nurturing an incredible variety of ecosystems from icy polar realms to lush tropical rainforests. Protected by a magnetic field and a nurturing atmosphere, Earth offers a safe haven where life can flourish in all its myriad forms. Its dramatic landscapes, ever-changing weather, and breathtaking vistas serve as a constant reminder of nature's power and beauty, inspiring the next generation of explorers to look upward and dream big.",
+      "physicalProperties": {
+        "diameterKm": 12742,
+        "avgTemperatureC": 15,
+        "surfaceGravityMs2": 9.8,
+        "orbitalPeriodDays": 365
+      },
+      "imageUrl": "/space/earth.png",
+      "distanceFromSunMillionKm": 149.6,
+      "rotationSpeed": 1,
+      "texture": {
+        "day": "/space/textures/earth-day.webp",
+        "night": "/space/textures/earth-night.webp"
+      }
+    },
+    {
+      "name": "Mars",
+      "description": "Mars, the alluring Red Planet, has long captured human imagination with its rusty surface and tantalizing mysteries. Home to Olympus Mons—the tallest volcano in the solar system—and the vast Valles Marineris canyon system, Mars is a planet of extremes and contrasts. Its thin atmosphere and frequent, planet-encircling dust storms paint a picture of a world that has undergone dramatic changes over time. The presence of ancient riverbeds and polar ice caps sparks the exciting possibility that Mars once harbored conditions suitable for life. Mars stands as a beacon for future explorers eager to step onto alien soil and unlock the secrets of our cosmic neighbor.",
+      "physicalProperties": {
+        "diameterKm": 6779,
+        "avgTemperatureC": -63,
+        "surfaceGravityMs2": 3.7,
+        "orbitalPeriodDays": 687
+      },
+      "imageUrl": "/space/mars.png",
+      "distanceFromSunMillionKm": 227.9,
+      "rotationSpeed": 1.03,
+      "texture": "/space/textures/mars.webp"
+    },
+    {
+      "name": "Jupiter",
+      "description": "Jupiter reigns as the colossal king of our solar system—a swirling gas giant with a personality as vast as its size. Dominating the skies is the Great Red Spot, a storm larger than Earth that has been raging for centuries. This mighty planet, composed mainly of hydrogen and helium, boasts a mesmerizing array of bands and vortices that continuously shape its ever-changing appearance. With over 75 moons, including the captivating Galilean satellites, Jupiter offers a miniature solar system in its own right. Its sheer scale and dynamic weather systems ignite the imagination of young space enthusiasts, inviting them to explore the wonders of a planet where science and mystery intertwine.",
+      "physicalProperties": {
+        "diameterKm": 139820,
+        "avgTemperatureC": -110,
+        "surfaceGravityMs2": 24.8,
+        "orbitalPeriodDays": 4333
+      },
+      "imageUrl": "/space/jupiter.png",
+      "distanceFromSunMillionKm": 778.5,
+      "rotationSpeed": 2.4,
+      "texture": "/space/textures/jupiter.webp"
+    },
+    {
+      "name": "Saturn",
+      "description": "Saturn captivates with its breathtaking rings—a celestial wonder made up of ice, rock, and dust particles that span an astonishing 280,000 kilometers. Beyond its iconic rings, Saturn is a gas giant with a gentle, almost ethereal beauty, home to over 82 moons. Among them is Titan, a world with a dense, mysterious atmosphere and landscapes that hint at organic processes. Saturn’s low density, so light that it could theoretically float in a gigantic ocean, and its fierce winds and swirling storms create a dynamic spectacle that enchants and inspires. This majestic planet invites young explorers to envision a universe where elegance and extreme science coexist.",
+      "physicalProperties": {
+        "diameterKm": 116460,
+        "avgTemperatureC": -140,
+        "surfaceGravityMs2": 10.4,
+        "orbitalPeriodDays": 10759
+      },
+      "imageUrl": "/space/saturn.png",
+      "distanceFromSunMillionKm": 1432.0,
+      "rotationSpeed": 2.3,
+      "texture": "/space/textures/saturn.webp",
+      "hasRings": true,
+      "ringTexture": "/space/textures/saturn_ring.png"
+    },
+    {
+      "name": "Uranus",
+      "description": "Uranus is one of the solar system's most intriguing space, renowned for its peculiar sideways rotation that makes it appear to roll along its orbit. Its cool blue-green color, a gift from methane and other ices in its atmosphere, gives it an otherworldly look that is both calming and mysterious. With extreme seasonal cycles—each pole experiencing over 40 years of continuous sunlight or darkness—Uranus challenges our understanding of planetary dynamics. Its subtle ring system and 27 diverse moons add layers of complexity and wonder, inspiring curious young minds to question how nature defies expectations and what secrets lie hidden in the outer reaches of our cosmic neighborhood.",
+      "physicalProperties": {
+        "diameterKm": 50724,
+        "avgTemperatureC": -195,
+        "surfaceGravityMs2": 8.7,
+        "orbitalPeriodDays": 30687
+      },
+      "imageUrl": "/space/uranus.png",
+      "distanceFromSunMillionKm": 2867.0,
+      "rotationSpeed": 1.4,
+      "texture": "/space/textures/uranus.webp"
+    },
+    {
+      "name": "Neptune",
+      "description": "Neptune, the distant blue marvel of our solar system, is famed as the windiest planet, where storms whip through the atmosphere at speeds of up to 2,100 kilometers per hour. Its vivid blue hue, intensified by atmospheric methane, gives the planet an ethereal glow against the dark canvas of space. Among its many wonders is the Great Dark Spot, a tempestuous storm system reminiscent of Jupiter's Great Red Spot. With 14 known moons, including the intriguing, retrograde-orbiting Triton, Neptune remains shrouded in mystery. Its dynamic weather and remote beauty beckon young adventurers to journey into the farthest frontiers of our cosmic backyard.",
+      "physicalProperties": {
+        "diameterKm": 49244,
+        "avgTemperatureC": -200,
+        "surfaceGravityMs2": 11.2,
+        "orbitalPeriodDays": 60190
+      },
+      "imageUrl": "/space/neptune.png",
+      "distanceFromSunMillionKm": 4515.0,
+      "rotationSpeed": 1.5,
+      "texture": "/space/textures/neptune.webp"
+    }
+  ]
+}
