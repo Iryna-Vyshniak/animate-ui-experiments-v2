@@ -4,7 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ededed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,14 +14,71 @@
   }
 }
 
-body {
+body,
+.modal {
+  min-height: 100vh;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: url('/space/space-stars.jpg') repeat top center / contain, var(--background);
+}
+.modal {
+  background: url('/space/milky_way.webp') repeat top center / contain, var(--background);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  /* Приховуємо скролбар */
+  .remove-scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  .remove-scrollbar::-webkit-scrollbar-track,
+  .remove-scrollbar::-webkit-scrollbar-thumb,
+  .remove-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  .stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    /* Підключення зображення, яке повторюється по всьому фону */
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+    background-size: 1000px 1000px;
+    /* Анімація зміщення фону. Значення 1000px відповідає розміру одного тайлу */
+    animation: moveBackground 70s linear infinite;
+    -webkit-animation: moveBackground 70s linear infinite;
+    -moz-animation: moveBackground 70s linear infinite;
+  }
+
+  /* Стандартна анімація */
+  @keyframes moveBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 1000px 0;
+    }
+  }
+
+  /* Вендорні префікси для Webkit */
+  @-webkit-keyframes moveBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 1000px 0;
+    }
+  }
+
+  /* Вендорні префікси для Mozilla */
+  @-moz-keyframes moveBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 1000px 0;
+    }
   }
 }
