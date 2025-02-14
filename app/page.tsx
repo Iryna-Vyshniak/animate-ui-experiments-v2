@@ -1,5 +1,4 @@
 import GalacticView from '@/components/galactic/GalacticView';
-import StarrySpace from '@/components/space/StarrySpace';
 import ToggleAudio from '@/components/ToggleAudio';
 import planetsData from '@/data/planets.json';
 
@@ -8,7 +7,6 @@ export default function Home() {
   return (
     <div className='relative min-h-screen w-full overflow-hidden'>
       <div className='absolute inset-0 -z-10'>
-        <StarrySpace />
         <div className='stars'></div>
       </div>
 
