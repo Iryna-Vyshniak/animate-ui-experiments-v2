@@ -19,7 +19,7 @@ const PlanetMesh = ({ planet }: { planet: IPlanet }) => {
     <group scale={[3, 3, 3]}>
       {/* Planet */}
       <mesh castShadow receiveShadow>
-        <sphereGeometry args={[window.innerWidth < 768 ? 1.5 : 0.75, 64, 64]} />{' '}
+        <sphereGeometry args={[window.innerWidth < 768 ? 0.35 : 0.75, 64, 64]} />{' '}
         {/* ✅ Оптимізація */}
         <meshStandardMaterial map={texture} bumpScale={0.05} roughness={1} metalness={1} />
       </mesh>
