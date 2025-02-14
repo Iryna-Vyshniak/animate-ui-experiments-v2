@@ -10,7 +10,7 @@ const StarryBackground = ({ reverse = false }: { reverse?: boolean }) => {
   // Геометрія зірок
   const starsGeometry = useMemo(() => {
     const geometry = new THREE.BufferGeometry();
-    const starsCount = 10000;
+    const starsCount = window.innerWidth < 768 ? 3000 : 10000;
     const positions = new Float32Array(starsCount * 3);
 
     for (let i = 0; i < starsCount * 3; i++) {

@@ -7,7 +7,9 @@ import Ring from './Ring';
 
 const PlanetMesh = ({ planet }: { planet: IPlanet }) => {
   const texturePath = typeof planet.texture === 'string' ? planet.texture : planet.texture.day;
-  const texture = useLoader(THREE.TextureLoader, texturePath);
+  const texture = useLoader(THREE.TextureLoader, texturePath, (loader) => {
+    loader.crossOrigin = 'anonymous';
+  });
 
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
@@ -19,7 +21,7 @@ const PlanetMesh = ({ planet }: { planet: IPlanet }) => {
     <group scale={[3, 3, 3]}>
       {/* Planet */}
       <mesh castShadow receiveShadow>
-        <sphereGeometry args={[window.innerWidth < 768 ? 0.35 : 0.75, 32, 32]} />{' '}
+        <sphereGeometry args={[window.innerWidth < 768 ? 0.5 : 0.75, 32, 32]} />{' '}
         {/* ✅ Оптимізація */}
         <meshStandardMaterial map={texture} bumpScale={0.05} roughness={1} metalness={1} />
       </mesh>
