@@ -19,10 +19,10 @@ const PlanetMesh = ({ planet }: { planet: IPlanet }) => {
     <group scale={[3, 3, 3]}>
       {/* Planet */}
       <mesh castShadow receiveShadow>
-        <sphereGeometry args={[0.75, 64, 64]} />
+        <sphereGeometry args={[window.innerWidth < 768 ? 1.5 : 0.75, 64, 64]} />{' '}
+        {/* ✅ Оптимізація */}
         <meshStandardMaterial map={texture} bumpScale={0.05} roughness={1} metalness={1} />
       </mesh>
-      {/* Rings if planet has */}
       {planet.hasRings && planet.ringTexture && (
         // Тут передаємо базовий радіус 1, тому що сфера створена з радіусом 1,
         // а групове масштабування зробить їх ефективними.
