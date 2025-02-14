@@ -1,8 +1,16 @@
+import { notFound } from 'next/navigation';
+import planetsData from '@/data/planets.json';
+import Modal from './modal';
+
 const Page = async ({ params }: { params: Promise<{ name: string }> }) => {
   const { name } = await params;
-  console.log(name);
+  const { planets } = planetsData;
+  const planet = planets.find((planet) => planet.name.toLowerCase() === name.toLowerCase());
+  if (!planet) {
+    notFound();
+  }
 
-  return <div>Will be Modal</div>;
+  return <Modal planet={planet} />;
 };
 
 export default Page;
