@@ -11,7 +11,7 @@ import PlanetPhysicalProperties from './PlanetPhysicalProperties';
 
 import { useLayoutNavigationController } from '@/hooks/useLayoutNavigationController';
 
-const PlanetDetail = ({ planet }: { planet: IPlanet }) => {
+const PlanetDetail = ({ planet, isModal }: { planet: IPlanet; isModal: boolean }) => {
   const { shouldCloseModal, close } = useLayoutNavigationController();
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
 
@@ -32,10 +32,10 @@ const PlanetDetail = ({ planet }: { planet: IPlanet }) => {
       className='w-full h-screen overflow-x-hidden flex flex-col items-center relative p-4 remove-scrollbar'
       layoutId={`planet-${planet.name}`}
     >
-      <PlanetImage planet={planet} mouseOffset={mouseOffset} />
-      <div className='flex flex-col z-10 w-full h-full p-4 mt-96 md:mt-44 absolute bottom-0 inset-0 bg-gradient-to-b from-transparent via-black/80 to-black/90 opacity-100 justify-end pointer-events-none'>
+      <PlanetImage planet={planet} mouseOffset={mouseOffset} isModal={isModal} />
+      <div className='flex flex-col z-10 w-full h-full p-4 mt-96 absolute bottom-0 inset-0 bg-gradient-to-b from-transparent via-[#1f0049]/90 to-slate-950 opacity-100 justify-end pointer-events-none'>
         <PlanetHeader name={planet.name} shouldClose={shouldCloseModal} onClose={close} />
-        <main className='flex flex-col gap-4 md:flex-row justify-between items-center px-3'>
+        <main className='flex flex-col gap-4  justify-between items-center px-3'>
           <PlanetDescription description={planet.description} />
           <PlanetPhysicalProperties physicalProperties={planet.physicalProperties} />
         </main>

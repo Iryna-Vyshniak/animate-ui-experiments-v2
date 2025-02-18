@@ -11,9 +11,10 @@ import ToggleAudio from '../ToggleAudio';
 type PlanetImageProps = {
   planet: IPlanet;
   mouseOffset: { x: number; y: number };
+  isModal?: boolean;
 };
 
-const PlanetImage = ({ planet, mouseOffset }: PlanetImageProps) => {
+const PlanetImage = ({ planet, mouseOffset, isModal }: PlanetImageProps) => {
   const [isView, setIsView] = useState<boolean>(false);
 
   const handleView = () => setIsView(!isView);
@@ -29,7 +30,7 @@ const PlanetImage = ({ planet, mouseOffset }: PlanetImageProps) => {
         <Image src={Download} alt='download icon' />
       </a>{' '}
       <figure
-        className={`flex items-center justify-center w-[90%]  ${
+        className={`flex items-center justify-center w-full  ${
           !isView ? 'relative' : 'fixed inset-0 z-[70]'
         }`}
       >
@@ -52,7 +53,7 @@ const PlanetImage = ({ planet, mouseOffset }: PlanetImageProps) => {
             />
           </motion.div>
         ) : (
-          <Planet3D planet={planet} onView={handleView} />
+          <Planet3D planet={planet} onView={handleView} isModal={isModal} />
         )}
       </figure>
     </>
