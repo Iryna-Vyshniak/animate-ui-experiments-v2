@@ -1,12 +1,23 @@
-import { useRouter } from 'next/navigation';
+'use client';
 
-import { useLayoutNavigationStore } from '@/store/layoutNavigationStore';
+import { useRouter } from 'next/navigation';
+import { useShallow } from 'zustand/react/shallow';
+
+import { LayoutNavigationState, useLayoutNavigationStore } from '@/store/layoutNavigationStore';
 import { NAVIGATION_DURATION } from '@/constants/navigation';
 
 export const useLayoutNavigationController = () => {
   const router = useRouter();
-  const { isOpenModal, setIsOpenModal, setShouldCloseModal, shouldCloseModal } =
-    useLayoutNavigationStore();
+  const { isOpenModal, setIsOpenModal, setShouldCloseModal, shouldCloseModal, setFollowedPlanet } =
+    useLayoutNavigationStore(
+      useShallow((state: LayoutNavigationState) => ({
+        isOpenModal: state.isOpenModal,
+        setIsOpenModal: state.setIsOpenModal,
+        setShouldCloseModal: state.setShouldCloseModal,
+        shouldCloseModal: state.shouldCloseModal,
+        setFollowedPlanet: state.setFollowedPlanet,
+      }))
+    );
 
   const push = (name: string) => {
     router.push(`/planets/${name}`);
@@ -20,6 +31,7 @@ export const useLayoutNavigationController = () => {
   const close = () => {
     if (shouldCloseModal) {
       setIsOpenModal(false);
+      setFollowedPlanet(null);
       setTimeout(() => {
         router.back();
       }, NAVIGATION_DURATION);
