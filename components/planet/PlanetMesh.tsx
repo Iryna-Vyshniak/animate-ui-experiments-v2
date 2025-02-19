@@ -1,16 +1,17 @@
 'use client';
 import React, { useRef, useCallback } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 import { Sphere, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { IPlanet } from '@/types/planet';
-import Ring from './Ring';
-import { useLayoutNavigationController } from '@/hooks/useLayoutNavigationController';
+
 import { useLayoutNavigationStore, LayoutNavigationState } from '@/store/layoutNavigationStore';
+
+import Ring from './Ring';
+
+import { IPlanet } from '@/types/planet';
 import { SLOW_ORBIT_FACTOR } from '@/constants/navigation';
-import SceneStars from '../space/SceneStars';
-import { useShallow } from 'zustand/react/shallow';
 
 interface PlanetMeshProps {
   planet: IPlanet;
@@ -20,7 +21,6 @@ interface PlanetMeshProps {
 const PlanetMesh: React.FC<PlanetMeshProps> = ({ planet, isModal }) => {
   const planetRef = useRef<THREE.Mesh>(null);
   const orbitGroupRef = useRef<THREE.Group>(null);
-  const { push } = useLayoutNavigationController();
 
   const { hoveredPlanet, setHoveredPlanet, setFollowedPlanet } = useLayoutNavigationStore(
     useShallow((state: LayoutNavigationState) => ({
@@ -63,11 +63,7 @@ const PlanetMesh: React.FC<PlanetMeshProps> = ({ planet, isModal }) => {
       // Встановлюємо цю планету як обрану (для OrbitControls)
       setFollowedPlanet(planet);
     }
-
-    if (push !== undefined) {
-      push(planet.name);
-    }
-  }, [planet, setFollowedPlanet, push]);
+  }, [planet, setFollowedPlanet]);
 
   return (
     <>
@@ -119,8 +115,6 @@ const PlanetMesh: React.FC<PlanetMeshProps> = ({ planet, isModal }) => {
               <Ring radius={1} texture={planet.ringTexture} />
             )}
           </group>
-          <SceneStars />
-          <SceneStars reverse />
         </group>
       ) : (
         <group scale={[3, 3, 3]}>
@@ -131,35 +125,8 @@ const PlanetMesh: React.FC<PlanetMeshProps> = ({ planet, isModal }) => {
             receiveShadow
             onClick={handlePlanetClick}
           >
-            <meshStandardMaterial
-              map={dayTexture instanceof THREE.Texture ? dayTexture : undefined}
-              // Якщо це Земля, використовуємо emissiveMap (нічну текстуру) для затемнення,
-              // а при hover додаємо теплий відтінок (наприклад, 0xffe680)
-              emissiveMap={
-                isEarth && nightTexture instanceof THREE.Texture ? nightTexture : undefined
-              }
-              emissive={new THREE.Color(hoveredPlanet === planet.name ? 0xffe680 : 0x000000)}
-              emissiveIntensity={0}
-              bumpScale={0.05}
-              roughness={1}
-              metalness={1}
-            />
+            <meshStandardMaterial map={dayTexture} bumpScale={0.05} roughness={1} metalness={1} />
           </Sphere>
-
-          {!isEarth && hoveredPlanet === planet.name && (
-            <Sphere args={[0.5, 32, 32]}>
-              <meshBasicMaterial
-                map={dayTexture instanceof THREE.Texture ? dayTexture : undefined}
-                toneMapped={false}
-                transparent={true}
-                opacity={1}
-                depthTest={false}
-                polygonOffset={true}
-                polygonOffsetFactor={-1}
-                polygonOffsetUnits={-1}
-              />
-            </Sphere>
-          )}
 
           {planet.hasRings && planet.ringTexture && (
             <Ring radius={1} texture={planet.ringTexture} />
