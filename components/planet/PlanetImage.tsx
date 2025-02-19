@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useSpring, animated } from '@react-spring/web';
+
 import { IPlanet } from '@/types/planet';
 import Download from '@/public/icons/download.svg';
+
 import Planet3D from './Planet3D';
-import ToggleAudio from '../ToggleAudio';
 
 type PlanetImageProps = {
   planet: IPlanet;
@@ -19,9 +20,19 @@ const PlanetImage = ({ planet, mouseOffset, isModal }: PlanetImageProps) => {
 
   const handleView = () => setIsView(!isView);
 
+  const imageSpring = useSpring({
+    transform: `scale(1.05) translate(${-mouseOffset.x}px, ${-mouseOffset.y}px)`,
+    config: { mass: 1, tension: 350, friction: 20 },
+  });
+
+  const fadeIn = useSpring({
+    opacity: isView ? 0 : 1,
+    scale: isView ? 0.8 : 1,
+    config: { mass: 2, tension: 150, friction: 25 },
+  });
+
   return (
     <>
-      <ToggleAudio />
       <a
         href={planet.imageUrl}
         download
@@ -30,28 +41,23 @@ const PlanetImage = ({ planet, mouseOffset, isModal }: PlanetImageProps) => {
         <Image src={Download} alt='download icon' />
       </a>{' '}
       <figure
-        className={`flex items-center justify-center w-full  ${
+        className={`flex items-center justify-center w-full   ${
           !isView ? 'relative' : 'fixed inset-0 z-[70]'
         }`}
       >
         {!isView ? (
-          <motion.div
-            transition={{ type: 'spring', bounce: 0.5, duration: 5, mass: 1 }}
-            className='relative flex items-center justify-center p-8'
-            layoutId={`planet-image-${planet.name}`}
-          >
-            <Image
-              src={planet.imageUrl}
-              alt={`Image of ${planet.name}`}
-              width={500}
-              height={500}
-              className='scale-[1.5] cursor-pointer'
-              onClick={handleView}
-              style={{
-                transform: `scale(1.2) translate(${-mouseOffset.x}px, ${-mouseOffset.y}px)`,
-              }}
-            />
-          </motion.div>
+          <animated.div style={fadeIn} className='relative flex items-center justify-center p-8'>
+            <animated.div style={imageSpring}>
+              <Image
+                src={planet.imageUrl}
+                alt={`Image of ${planet.name}`}
+                width={500}
+                height={500}
+                className='scale-[1.05] cursor-pointer '
+                onClick={handleView}
+              />
+            </animated.div>
+          </animated.div>
         ) : (
           <Planet3D planet={planet} onView={handleView} isModal={isModal} />
         )}

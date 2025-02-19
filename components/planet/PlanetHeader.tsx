@@ -5,7 +5,7 @@ type PlanetHeaderProps = {
 };
 
 const PlanetHeader = ({ name, shouldClose, onClose }: PlanetHeaderProps) => (
-  <header className='flex w-full justify-between gap-4 items-center p-4'>
+  <header className='flex w-full  md:w-2/3 justify-between gap-4 items-center p-4'>
     <h2 className='font-space-mono text-6xl font-bold drop-shadow-[0px_10px_5px_rgba(8,0,36,1)]'>
       {name}
     </h2>
