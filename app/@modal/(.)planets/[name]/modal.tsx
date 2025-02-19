@@ -1,42 +1,41 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect } from 'react';
+import { useSpring, animated } from '@react-spring/web';
 
 import { IPlanet } from '@/types/planet';
 import { useLayoutNavigationController } from '@/hooks/useLayoutNavigationController';
-import { NAVIGATION_DURATION } from '@/constants/navigation';
+
 import PlanetDetail from '@/components/planet/PlanetDetail';
 import SceneSpaceBackground from '@/components/space/SceneSpaceBackground';
-
-const duration = NAVIGATION_DURATION / 1000;
-// Navigation_duration => 250 = example: 250 means that the duration of animation 250 milliseconds (MS). Division by 1000 converts it into seconds (0.25 sec).
 
 const Modal = ({ planet }: { planet: IPlanet }) => {
   const { isOpenModal, open, setIsOpenModal } = useLayoutNavigationController();
 
   useEffect(() => {
     open();
-
     return () => {
       setIsOpenModal(false);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const modalSpring = useSpring({
+    opacity: isOpenModal ? 1 : 0,
+    scale: isOpenModal ? 1 : 0.8,
+    config: { mass: 1, tension: 250, friction: 20 },
+  });
+
   return (
-    <AnimatePresence>
-      {isOpenModal && (
-        <div className='modal w-screen h-screen z-50 absolute inset-0'>
-          <div className='absolute w-screen h-screen inset-0 -z-20'>
-            <SceneSpaceBackground />
-          </div>
-          <motion.div className='mx-auto max-w-5xl' transition={{ duration }}>
-            <PlanetDetail planet={planet} isModal />
-          </motion.div>
+    isOpenModal && (
+      <animated.div style={modalSpring} className='modal w-screen h-screen z-50 absolute inset-0'>
+        <div className='absolute w-screen h-screen inset-0 -z-20'>
+          <SceneSpaceBackground />
         </div>
-      )}
-    </AnimatePresence>
+        <animated.div className='flex items-center justify-center p-4 h-screen'>
+          <PlanetDetail planet={planet} isModal />
+        </animated.div>
+      </animated.div>
+    )
   );
 };
 
